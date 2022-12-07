@@ -43,6 +43,20 @@ def corretor(path_respostas, path_gabarito):
     df_unico.sort_values(by=["Aluno_ID"], inplace = True)
     df_unico.set_index("Aluno_ID", inplace = True)
 
+
+    # Média geral de acertos dos alunos
+    media_geral = df_unico['Acerto'].mean().round(3)
+    media_geral_proporcao = (media_geral*100).round(3)
+    total_acertos_geral = df_unico['Acerto'].sum()
+    total_erros_geral = (~df_unico['Acerto']).sum()
+
+    print(f"Média de Acertos Geral: {str(media_geral)}",
+          f"Média de Acertos Geral em %: {str(media_geral_proporcao)}",
+          f'Total de Acertos Geral: {total_acertos_geral}',
+          f'Total de Erros Geral: {total_erros_geral}',
+          sep = '\n', end = '\n ----------------------- \n')
+
+
     # Salva em uma lista cada ID único.
     ids = df_unico.index.unique()
 
@@ -56,13 +70,13 @@ def corretor(path_respostas, path_gabarito):
         media_abs = df_unico.loc[id, 'Acerto'].mean().round(3)
         media_proporcao = (media_abs*100).round(3)
 
-        print(f'Nome: {nome} ',
-               f'Média de acerto (absoluto): {str(media_abs)}',
-               f'Média de acertos em %:  {str(media_proporcao)}',
-               f'Total de acertos: {total_acertos}',
-               f'Total de erros: {total_erros}',
-               f'Total de questões em branco: {total_branco}',
-               sep = '\n', end = '\n ----------------------- \n')
+        print(f'Nome: {nome[0]}     ID = {id}',
+              f'Média de acerto (absoluto): {str(media_abs)}',
+              f'Média de acertos em %:  {str(media_proporcao)}',
+              f'Total de acertos: {total_acertos}',
+              f'Total de erros: {total_erros}',
+              f'Total de questões em branco: {total_branco}',
+              sep = '\n', end = '\n ----------------------- \n')
 
     return
 
