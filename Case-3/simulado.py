@@ -7,21 +7,16 @@
 import pandas as pd
 openpyxl
 '''
+import sys
 import pandas as pd
-
-# link_respostas = "https://docs.google.com/spreadsheets/d/1qavRtAUGqDEsAfczPqfmL5S9z8aiH6LS"
-# link_gabarito = "https://docs.google.com/spreadsheets/d/1L5IJsyAiCr5_A6oaH6ZEArrJrDL8p5J9"
-
-path_arquivo_resposta = "Case-3\Respostas.xlsx"
-path_arquivo_gabarito = "Case-3\Gabarito.xlsx"
 
 def corretor(path_respostas, path_gabarito):
 
     # Carregando as planilhas e convertendo em DataFrames
-    df_respostas = pd.read_excel(path_respostas) # + "/export")
+    df_respostas = pd.read_excel(path_respostas, engine ='openpyxl')
     df_respostas = pd.DataFrame(df_respostas) 
 
-    df_gabarito = pd.read_excel(path_gabarito) # + "/export")
+    df_gabarito = pd.read_excel(path_gabarito, engine ='openpyxl')
     df_gabarito = pd.DataFrame(df_gabarito)
 
     # Realizando a união dos dois DataFrames.
@@ -82,4 +77,29 @@ def corretor(path_respostas, path_gabarito):
 
 
 
-corretor(path_arquivo_resposta, path_arquivo_gabarito)
+if __name__ == "__main__":
+    if len(sys.argv) != 3:
+        print("Não foram passados os arquivos nos argumentos")
+        try:
+            print("Tentando baixar pelos links do drive...")
+            print("\n --------------------------------- \n ")
+            link_respostas = "https://docs.google.com/spreadsheets/d/1qavRtAUGqDEsAfczPqfmL5S9z8aiH6LS/export"
+            link_gabarito = "https://docs.google.com/spreadsheets/d/1L5IJsyAiCr5_A6oaH6ZEArrJrDL8p5J9/export"
+            corretor(link_respostas, link_gabarito)
+
+        except Exception as e:
+            print("Não foi possível baixar :( programa finalizado \n")
+            print(e)
+            quit()
+    else:
+        for i, arg in enumerate(sys.argv):
+            print(f"Argumento {i:>6}: {arg}")
+            print("\n --------------------------------- \n ")
+        
+        path_arquivo_resposta = sys.argv[1]
+        path_arquivo_gabarito = sys.argv[2] 
+
+        try:
+            corretor(path_arquivo_resposta, path_arquivo_gabarito)
+        except Exception as e:
+            print(e)
