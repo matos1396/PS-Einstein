@@ -2,10 +2,8 @@ def questao_3(lista):
 
     soma = 0
     for i in lista:
-        if i != 2*lista.index(i):
-            soma += i
-        else:
-            return soma
+        if i == 2*lista.index(i): return soma
+        soma += i
 
     return soma
 
