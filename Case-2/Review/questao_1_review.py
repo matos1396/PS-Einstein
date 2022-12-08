@@ -11,10 +11,8 @@ def questao_1(lista_itens, lista_preco, valor):
     # Caso contrário, retorna a lista dos produtos comprados.
     for elem in lista:
         total += elem[1]
-        if total <= valor:
-            lista_final.append(elem[0])
-        else:
-            return lista_final
+        if total >= valor: return lista_final
+        lista_final.append(elem[0])
 
     return lista_final
 
