@@ -11,9 +11,9 @@ def questao_3(lista):
 
 
 ##### Testes #####
-lista1 = [0,5,6,7]
+lista1 = [0,5,6,7] 
 lista2 = []
 lista3 = [1,2,3,4,5]
 lista4 = [9,0,1,3,7,10,9,8]
 
-print(questao_3(lista4))
+print(questao_3(lista3))

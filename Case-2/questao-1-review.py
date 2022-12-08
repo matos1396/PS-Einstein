@@ -1,3 +1,5 @@
+
+
 def questao_1(lista_itens, lista_preço, valor):
 
     total = 0

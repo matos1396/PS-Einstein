@@ -1,3 +1,4 @@
+
 def questao_3(lista):
 
     soma = 0

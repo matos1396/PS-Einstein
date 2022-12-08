@@ -1,9 +1,10 @@
-def questao_1(lista_itens, lista_preço, valor):
+# -*- coding: utf-8 -*-
+def questao_1(lista_itens, lista_preco, valor):
 
     total = 0
     lista_final = []
 
-    lista = list(zip(lista_itens, lista_preço)) # Lista de tuplas com Nome e Preço de cada item
+    lista = list(zip(lista_itens, lista_preco)) # Lista de tuplas com Nome e Preço de cada item
 
     # Percorre a lista na ordem recebida e compara o preço dos produtos com o valor recebido
     # Caso seja possível comprar, adiciona o nome do produto na lista dos itens comprados e adiciona o valor do produto ao total
